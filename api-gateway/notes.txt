@@ -1,0 +1,6 @@
+- Reactive API gateway handles HTTP requests so no need of the "Spring Web" dependency
+
+- API gateway is also a Eureka client
+
+- api route eg: "http://localhost:8762/question-service/question/allQuestions" ie service app name is added
+in the route

@@ -1,0 +1,2 @@
+- This service is a Feign server
+- Does not require the dependency of Feign

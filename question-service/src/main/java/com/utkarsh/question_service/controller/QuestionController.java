@@ -5,6 +5,7 @@ import com.utkarsh.question_service.model.Question;
 import com.utkarsh.question_service.model.QuestionDTO;
 import com.utkarsh.question_service.model.Response;
 import com.utkarsh.question_service.service.QuestionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("question")
+@RequiredArgsConstructor
 public class QuestionController {
 
-    @Autowired
-    private QuestionService questionService;
+    private final QuestionService questionService;
 
     @GetMapping("/allQuestions")
     public ResponseEntity<List<Question>> getQuestions(){
@@ -33,7 +34,7 @@ public class QuestionController {
         return questionService.addQuestion(question);
     }
 
-    // NEW CONTROLLERS FOR QUESTION MICROSERVICE
+    // new controllers for other services to consume (quiz-service in this project)
 
     // generate ques for quiz
     @GetMapping("getQuizQuestionIds")

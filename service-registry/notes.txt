@@ -1,0 +1,3 @@
+- @EnableEurekaServer on the class containing main method is required
+
+- Eureka-server/service-registry requires the "Spring Web" dependency

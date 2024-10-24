@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+// application-name of Feign server app in uppercase
 @FeignClient("QUESTION-SERVICE")
+// contains required same method definitions with complete routes in the annotations
 public interface QuizInterface {
     @GetMapping("question/getQuizQuestionIds")
     public ResponseEntity<List<Integer>> getQuizQuestionIds(@RequestParam String category,

@@ -5,6 +5,7 @@ import com.utkarsh.question_service.model.Question;
 import com.utkarsh.question_service.model.QuestionDTO;
 import com.utkarsh.question_service.model.Response;
 import com.utkarsh.question_service.repo.QuestionRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -16,15 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
 
-    // setter-based injection is a better practice
     @Autowired
-    private QuestionRepo questionRepo;
+    private final QuestionRepo questionRepo;
 
-    // for testing load balancing which is done automatically via OpenFeign
-    @Autowired
-    private Environment environment;
+    // for testing load balancing in getQuizQuestions method which is done automatically by OpenFeign
+    private final Environment environment;
 
     public ResponseEntity<List<Question>> getQuestions() {
         try{
@@ -66,6 +66,7 @@ public class QuestionService {
 
     public ResponseEntity<List<QuestionDTO>> getQuizQuestions(List<Integer> questionIds) {
 
+        // if multiple instances of this server are up, requests are sent to the server which min load
         System.out.println("port: " + environment.getProperty("local.server.port"));
 
         try{

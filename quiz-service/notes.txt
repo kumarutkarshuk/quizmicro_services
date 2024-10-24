@@ -1,0 +1,3 @@
+- this service is a Feign Client
+- Needs the required dependency, @EnableFeignClients on the main method's class and Feign interface for
+inter-service communication

@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-// creating a constructor => all constructors will be created by you &
-// Java won't do it for you
 @AllArgsConstructor
-// required by JPA
 @NoArgsConstructor
 public class Question {
     @Id

@@ -6,6 +6,7 @@ import com.utkarsh.quiz_service.model.QuestionDTO;
 import com.utkarsh.quiz_service.model.Quiz;
 import com.utkarsh.quiz_service.model.Response;
 import com.utkarsh.quiz_service.repo.QuizRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class QuizService {
 
-    @Autowired
-    private QuizRepo quizRepo;
+    private final QuizRepo quizRepo;
 
-    @Autowired
-    // @EnableFeignClients on the class containing main method
-    private QuizInterface quizInterface;
+    private final QuizInterface quizInterface;
 
     public ResponseEntity<String> createQuiz(String category, int num, String title) {
         try{
@@ -45,8 +44,6 @@ public class QuizService {
         try{
             Optional<Quiz> optionalQuiz = quizRepo.findById(id);
 
-            // better to explicitly check for convenience
-            // keep try-catch for unexpected runtime exceptions
             if(optionalQuiz.isEmpty()){
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NOT_FOUND);
             }
